@@ -113,15 +113,17 @@ void add_username(int socket_fd, User *user, char *username) {
     // Send a prompt back to the user
     char *message_1 = "Welcome to the lobby, ";
     char *message_2 = "!\n";
-    int total_len = strlen(message_1) + strlen(user->username) + strlen(message_2) + strlen(LOBBY_INST);
+    int total_len = strlen(message_1) + strlen(user->username) + strlen(message_2);
     char message[total_len + 1];
     message[0] = '\0';
     strcat(message, message_1);
     strcat(message, user->username);
     strcat(message, message_2);
-    strcat(message, LOBBY_INST);
     message[total_len] = '\0';
     prompt(socket_fd, user->fd, message);
+    prompt(socket_fd, user->fd, LOBBY_INST_0);
+    prompt(socket_fd, user->fd, LOBBY_INST_1);
+    prompt(socket_fd, user->fd, LOBBY_INST_2);
 }
 
 
@@ -219,15 +221,16 @@ void join_room(int socket_fd, User *user, char *room) {
     // Send a prompt back to the user
     char *message_1 = "Joined room ";
     char *message_2 = ".\n";
-    int total_len = strlen(message_1) + strlen(user->room) + strlen(message_2) + strlen(ROOM_INST);
+    int total_len = strlen(message_1) + strlen(user->room) + strlen(message_2);
     char message[total_len + 1];
     message[0] = '\0';
     strcat(message, message_1);
     strcat(message, user->room);
     strcat(message, message_2);
-    strcat(message, ROOM_INST);
     message[total_len] = '\0';
     prompt(socket_fd, user->fd, message);
+    prompt(socket_fd, user->fd, ROOM_INST_0);
+    prompt(socket_fd, user->fd, ROOM_INST_1);
 }
 
 
@@ -249,15 +252,17 @@ void leave_room(int socket_fd, User *user) {
     // Send a prompt back to the user
     char *message_1 = "Left room ";
     char *message_2 = ". You are currently in the lobby.\n";
-    int total_len = strlen(message_1) + strlen(past_room) + strlen(message_2) + strlen(LOBBY_INST);
+    int total_len = strlen(message_1) + strlen(past_room) + strlen(message_2);
     char message[total_len + 1];
     message[0] = '\0';
     strcat(message, message_1);
     strcat(message, past_room);
     strcat(message, message_2);
-    strcat(message, LOBBY_INST);
     message[total_len] = '\0';
     prompt(socket_fd, user->fd, message);
+    prompt(socket_fd, user->fd, LOBBY_INST_0);
+    prompt(socket_fd, user->fd, LOBBY_INST_1);
+    prompt(socket_fd, user->fd, LOBBY_INST_2);
 }
 
 
@@ -293,7 +298,7 @@ void post(int socket_fd, User *user, char *message) {
 
 /*
 Add user input to the user's buffer. If a network newline is detected, process the user's input.
-Return 0 if successful or -1if the file descriptor is closed.
+Return 0 if successful or -1 if the file descriptor is closed.
 */
 int process_input(int socket_fd, User *user) {
     // Add the bytes read to the user's buffer

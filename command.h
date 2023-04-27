@@ -3,8 +3,11 @@
 
 
 #define BUF_SIZE 2048
-#define LOBBY_INST "> Enter the name of the room you would like to join.\n> Enter '-u' for a list of active users.\n> Enter '-q' to quit.\n"
-#define ROOM_INST "> Enter '-u' for a list of users in this room.\n> Enter '-l' to leave or '-q' to quit.\n"
+#define LOBBY_INST_0 "Enter the name of the room you would like to join.\n"
+#define LOBBY_INST_1 "Enter '-u' for a list of active users.\n"
+#define LOBBY_INST_2 "Enter '-q' to quit.\n"
+#define ROOM_INST_0 "Enter '-u' for a list of users in this room.\n"
+#define ROOM_INST_1 "Enter '-l' to leave or '-q' to quit.\n"
 
 
 typedef struct user {
@@ -87,7 +90,7 @@ void post(int socket_fd, User *user, char *message);
 
 /*
 Add user input to the user's buffer. If a network newline is detected, process the user's input.
-Return 0 if successful or -1if the file descriptor is closed.
+Return 0 if successful or -1 if the file descriptor is closed.
 */
 int process_input(int socket_fd, User *user);
 
