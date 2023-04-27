@@ -71,15 +71,6 @@ int main() {
             curr = curr->next;
         }
 
-        // DEBUG
-        printf("Users->");
-        User *currr = users;
-        while (currr != NULL) {
-            printf("%d->", currr->fd);
-            currr = currr->next;
-        }
-        printf("\n");
-
         // Remove all disconnected users
         curr = users;
         User *prev = users;
@@ -100,15 +91,6 @@ int main() {
                 curr = prev->next;
             }
         }
-
-        // DEBUG
-        printf("Users->");
-        currr = users;
-        while (currr != NULL) {
-            printf("%d->", currr->fd);
-            currr = currr->next;
-        }
-        printf("\n");
     }
 
     fprintf(stderr, "server: Something weird happened.\n");
