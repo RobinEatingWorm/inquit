@@ -1,6 +1,6 @@
 # Inquit
 
-Inquit (Latin for 'he says' or 'she says') is a command-line program allowing users to chat in real-time. Inquit is written in C and requires a C compiler and the netcat utility.
+Inquit (Latin for 'he says' or 'she says') is a command-line program allowing users to chat in real time. Inquit is written in C and requires a C compiler and the netcat utility.
 
 ## Server Operation
 
